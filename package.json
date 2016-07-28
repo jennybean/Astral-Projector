@@ -19,7 +19,8 @@
     "isomorphic-fetch": "^2.2.1",
     "nodemon": "^1.9.2",
     "react": "^15.1.0",
-    "react-dom": "^15.1.0"
+    "react-dom": "^15.1.0",
+    "react-modal-dialog": "^3.0.2"
   },
   "babel": {
     "presets": [

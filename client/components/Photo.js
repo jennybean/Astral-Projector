@@ -1,8 +1,8 @@
 import React from 'react';
 import Input from './Input'
+import {ModalContainer, ModalDialog} from 'react-modal-dialog';
 
-
-export default class MoonWindow extends React.Component{
+export default class Photo extends React.Component{
 
   constructor(props){
     super(props);
@@ -10,19 +10,17 @@ export default class MoonWindow extends React.Component{
       moonData: {},
     };
   }
-
-
+  
   render(){
+
     return (
-      this.props.body 
-        ?
-        <div className='moon-photo'>
-          <h1>{this.props.body}</h1>
-          <p>{this.props.date}</p>
-          <p>{this.props.location}</p>
-          <img src={'http://api.usno.navy.mil/imagery/' + this.props.body + '.png?&date=' + this.props.date + '&time=' + this.props.time} className='moonpic'/>
-        </div>
-        : null
+            <div>
+              <div className='moon-photo'>
+                <h1>{this.props.body}</h1>
+                <p>in {this.props.location} on {this.props.date} at {this.props.time}</p>
+                <img src={'http://api.usno.navy.mil/imagery/' + this.props.body + '.png?&date=' + this.props.date + '&time=' + this.props.time} className='moonpic'/>
+              </div>
+            </div>
     );
   }
 }
