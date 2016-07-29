@@ -10,11 +10,11 @@ export default class Inputs extends React.Component{
   constructor(props){
     super(props);
     this.state = {
-    	error: null,
+      error: null,
       date: null,
       location: null,
       time: null,
-    	moonData: null,
+      moonData: null,
       body: null,
       showWindow: null
     };
@@ -33,7 +33,7 @@ export default class Inputs extends React.Component{
         this.setState({moonData});
         console.log('from state: moonData', this.state.moonData)
       });
-  	// clearForm();
+    // clearForm();
   }
 
   enterMercury(){
@@ -133,6 +133,11 @@ export default class Inputs extends React.Component{
         {this.state.body ?
           <ModalContainer>
             <ModalDialog id="modal">
+                <button type='submit' onClick={this.enterMoonData.bind(this)}> ☾ </button>
+                <button type='submit' onClick={this.enterMercury.bind(this)}> ☿ </button>
+                <button type='submit' onClick={this.enterVenus.bind(this)}> ♀ </button>
+                <button type='submit' onClick={this.enterMars.bind(this)}> ♂ </button>
+                <button type='submit' onClick={this.enterJupiter.bind(this)}> ♃ </button>
               <Photo moonData={this.state.moonData} date={this.state.date} time={this.state.time} body={this.state.body} location={this.state.location}/>
               <MoonData moonData={this.state.moonData} />
               <button onClick={this.closer.bind(this)}>Seach again</button>

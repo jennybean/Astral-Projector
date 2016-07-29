@@ -1,14 +1,16 @@
 img {
-	width: 50%;
+	width: 300px;
 }
 
 html {
-	background: black;
+	background: url('http://i.imgur.com/Y1nHV8H.gif');
 	color: white;
 	font-family: "Amatica SC";
 }
 
 #modal {
+  height: 100%;
   background: black;
   color: white;
+  border: 100%;
 }

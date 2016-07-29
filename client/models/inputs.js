@@ -7,4 +7,15 @@ export function fetchMoon(date, location) {
     })
 }
 
-
+// export function fetchWhere(where){ 
+//   return fetch('http://wherein.yahooapis.com/v1/document', {
+//       method: 'POST', 
+//       body: {
+//         'documentType': 'text/plain',
+//         'outputType': 'json',
+//         'documentContent': where
+//       }
+//     }).then(function(coord) { 
+//       console.log('coords', coord);
+//     })
+// }
