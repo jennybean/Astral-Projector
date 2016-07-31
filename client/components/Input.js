@@ -9,75 +9,37 @@ export default class Inputs extends React.Component{
 
   constructor(props){
     super(props);
+
+    this.enterPlanet = this.enterPlanet.bind(this);
+
     this.state = {
       error: null,
       date: null,
       location: null,
       time: null,
       moonData: null,
-      body: null,
-      showWindow: null
+      body: null, 
+      showWindow: false
     };
   }
 
-  enterMoonData(){
-    var date = this.state.date;
-    var location = this.state.location;
-    var time = this.state.time;
-
-    this.setState({body: 'moon'});
-    this.setState({showWindow: true});
-    
-    fetchMoon(date, location)
-      .then((moonData) => {
-        this.setState({moonData});
-        console.log('from state: moonData', this.state.moonData)
-      });
-    // clearForm();
-  }
-
-  enterMercury(){
+ enterPlanet(planet){
     // clearForm();
     var date = this.state.date;
     var location = this.state.location;
     var time = this.state.time;
 
     this.setState({moonData: null});
-    this.setState({body: 'mercury'});
+    this.setState({body: planet});
     this.setState({showWindow: true});
-  }
+ 
+    if(planet === 'moon'){      
+      fetchMoon(date, location)
+        .then((moonData) => {
+          this.setState({moonData});
+        });
+    }
 
-  enterVenus(){
-    // clearForm();
-    var date = this.state.date;
-    var location = this.state.location;
-    var time = this.state.time;
-
-    this.setState({moonData: null});
-    this.setState({body: 'venus'});
-    this.setState({showWindow: true});
-  }
-
-  enterMars(){
-    // clearForm();
-    var date = this.state.date;
-    var location = this.state.location;
-    var time = this.state.time;
-
-    this.setState({moonData: null});
-    this.setState({body: 'mars'});
-    this.setState({showWindow: true});
-  }
-
-  enterJupiter(){
-    // clearForm();
-    var date = this.state.date;
-    var location = this.state.location;
-    var time = this.state.time;
-
-    this.setState({moonData: null});
-    this.setState({body: 'jupiter'});
-    this.setState({showWindow: true});
   }
 
   handleLocationInput(e){
@@ -95,7 +57,7 @@ export default class Inputs extends React.Component{
   }
 
   closer(){
-    this.setState({body: null});
+    this.setState({showWindow: false});
   }
 
   render(){
@@ -103,59 +65,59 @@ export default class Inputs extends React.Component{
     return (
       <div>
 
-      <form action="action_page.php">
-        When
-        <input 
-          type="datetime-local" 
-          id='date'
-          name="date"
-          placeholder ='Enter Date'
-          onInput={this.handleDateTime.bind(this)}
-        />
-       
-        Where
-        <input 
-          type="text"
-          id='location'
-          name="location"
-          placeholder='Enter a City'
-          onInput={this.handleLocationInput.bind(this)}
+        <form action="action_page.php">
+          When
+          <input 
+            type="datetime-local" 
+            id='date'
+            name="date"
+            placeholder ='Enter Date'
+            onInput={this.handleDateTime.bind(this)}
+          />
+         
+          Where
+          <input 
+            type="text"
+            id='location'
+            name="location"
+            placeholder='Enter a City'
+            onInput={this.handleLocationInput.bind(this)}
 
-        />
-      </form>
+          />
+        </form>
 
-        <button type='submit' onClick={this.enterMoonData.bind(this)}> See the Moon! ☾ </button>
-        <button type='submit' onClick={this.enterMercury.bind(this)}> See Mercury! ☿ </button>
-        <button type='submit' onClick={this.enterVenus.bind(this)}> See Venus! ♀ </button>
-        <button type='submit' onClick={this.enterMars.bind(this)}> See Mars! ♂ </button>
-        <button type='submit' onClick={this.enterJupiter.bind(this)}> See Jupiter! ♃ </button>
+        <button type='submit' onClick={this.enterPlanet.bind(null, 'moon')}> See the Moon! ☾ </button>
+        <button type='submit' onClick={this.enterPlanet.bind(null, 'mercury')}> See Mercury! ☿ </button>
+        <button type='submit' onClick={this.enterPlanet.bind(null, 'venus')}> See Venus! ♀ </button>
+        <button type='submit' onClick={this.enterPlanet.bind(null, 'mars')}> See Mars! ♂ </button>
+        <button type='submit' onClick={this.enterPlanet.bind(null, 'jupiter')}> See Jupiter! ♃ </button>
 
-        {this.state.body ?
+        {this.state.showWindow ?
           <ModalContainer>
             <ModalDialog id="modal">
-                <button type='submit' onClick={this.enterMoonData.bind(this)}> ☾ </button>
-                <button type='submit' onClick={this.enterMercury.bind(this)}> ☿ </button>
-                <button type='submit' onClick={this.enterVenus.bind(this)}> ♀ </button>
-                <button type='submit' onClick={this.enterMars.bind(this)}> ♂ </button>
-                <button type='submit' onClick={this.enterJupiter.bind(this)}> ♃ </button>
-              <Photo moonData={this.state.moonData} date={this.state.date} time={this.state.time} body={this.state.body} location={this.state.location}/>
+                <button type='submit' onClick={this.enterPlanet.bind(null, 'moon')}> ☾ </button>
+                <button type='submit' onClick={this.enterPlanet.bind(null, 'mercury')}> ☿ </button>
+                <button type='submit' onClick={this.enterPlanet.bind(null, 'venus')}> ♀ </button>
+                <button type='submit' onClick={this.enterPlanet.bind(null, 'mars')}> ♂ </button>
+                <button type='submit' onClick={this.enterPlanet.bind(null, 'jupiter')}> ♃ </button>
+              <Photo body={this.state.body.body} moonData={this.state.moonData} date={this.state.date} time={this.state.time} body={this.state.body} location={this.state.location}/>
               <MoonData moonData={this.state.moonData} />
               <button onClick={this.closer.bind(this)}>Seach again</button>
             </ModalDialog>
           </ModalContainer>
         : null }
-  </div>
+     
+      </div>
     );
   }
 
 }
 
-// Helper functions
+// ============ Helper functions ============
 
 function clearForm(){
   document.getElementById("date").value = null;
   document.getElementById("location").value = null;
-  // document.getElementById("time").value = null;
 }
 
 function getDate(dateStr){
