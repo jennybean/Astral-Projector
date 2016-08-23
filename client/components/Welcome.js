@@ -6,8 +6,7 @@ export default class Welcome extends React.Component{
   render(){
     return (
       <div className='moon-window'>
-        <h1>Astral Projecter</h1>
-        <p>🌕🌖🌗🌘🌑🌒🌓🌔 </p>
+        <h1 className='title'>Astral Projector</h1>
         <Inputs />
       </div>
     );

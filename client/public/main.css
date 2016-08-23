@@ -1,16 +1,51 @@
 img {
-	width: 300px;
+  width: 300px;
 }
 
 html {
-	background: url('http://i.imgur.com/Y1nHV8H.gif');
-	color: white;
-	font-family: "Amatica SC";
+  background: url('http://i.imgur.com/Y1nHV8H.gif');
+  color: white;
+  font-family: "Amatica SC";
+}
+
+.title {
+  font-size: 150px;
+  text-align: center;
 }
 
 #modal {
-  height: 100%;
+  height: 90%;
   background: black;
   color: white;
   border: 100%;
+}
+
+label {
+  font-size: 50px;
+  vertical-align: middle;
+  margin: 0px 20px;
+}
+
+input {
+  font-family: 'Roboto Slab', serif;
+  width: 250px;
+  height: 25px;
+  border-radius: 2px;
+  border: 1px solid white;
+}
+
+button {
+  background-color: transparent;
+  font-family: "Amatica SC";
+  border: 1px solid white;
+  color: white;
+  padding: 4px 8px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 10px 1px 0px .5px;
+  transition-duration: 0.4s;
+  cursor: pointer;
+  border-radius: 8px;
 }

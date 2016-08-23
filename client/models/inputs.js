@@ -7,15 +7,10 @@ export function fetchMoon(date, location) {
     })
 }
 
-// export function fetchWhere(where){ 
-//   return fetch('http://wherein.yahooapis.com/v1/document', {
-//       method: 'POST', 
-//       body: {
-//         'documentType': 'text/plain',
-//         'outputType': 'json',
-//         'documentContent': where
-//       }
-//     }).then(function(coord) { 
-//       console.log('coords', coord);
-//     })
+// export function fetchLocation(){ 
+//   return fetch('http://nominatim.openstreetmap.org/search?q=paris,+france&format=json&polygon=0&addressdetails=1', {
+//     method: 'GET'
+//   }).then(function(coords) { 
+//     console.log('location', coords)
+//   }).catch(function(err){console.log('Could not load location!', err)})
 // }

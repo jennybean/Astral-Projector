@@ -12,7 +12,7 @@ export default class Photo extends React.Component{
   }
   
   render(){
-
+    
     return (
             <div>
               <div className='moon-photo'>

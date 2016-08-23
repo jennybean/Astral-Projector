@@ -13,4 +13,4 @@ app.get('/app-bundle.js',
 
 var port = process.env.PORT || 4040;
 app.listen(port);
-console.log("🌙 ASTRAL PROJECTOR Listening on localhost:" + port);
+console.log("🌙 ASTRAL PROJECTOR listening on localhost:" + port);

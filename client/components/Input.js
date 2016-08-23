@@ -1,7 +1,6 @@
 import React from 'react';
 import {fetchMoon} from '../models/inputs';
 import {ModalContainer, ModalDialog} from 'react-modal-dialog';
-
 import Photo from './Photo';
 import MoonData from './MoonData';
 
@@ -24,7 +23,6 @@ export default class Inputs extends React.Component{
   }
 
  enterPlanet(planet){
-    // clearForm();
     var date = this.state.date;
     var location = this.state.location;
     var time = this.state.time;
@@ -39,7 +37,6 @@ export default class Inputs extends React.Component{
           this.setState({moonData});
         });
     }
-
   }
 
   handleLocationInput(e){
@@ -47,10 +44,9 @@ export default class Inputs extends React.Component{
   }
 
   handleDateTime(e){
-    var dt = e.currentTarget.value;
 
-    var date = getDate(dt);
-    var time = getTime(dt);
+    var date = getDate(e.currentTarget.value);
+    var time = getTime(e.currentTarget.value);
 
     this.setState({date});
     this.setState({time});
@@ -65,41 +61,40 @@ export default class Inputs extends React.Component{
     return (
       <div>
 
-        <form action="action_page.php">
-          When
+        <center><form className='center'>
+          <span><label>When</label>
           <input 
             type="datetime-local" 
             id='date'
             name="date"
-            placeholder ='Enter Date'
             onInput={this.handleDateTime.bind(this)}
           />
          
-          Where
+          <label>Where</label>
           <input 
             type="text"
             id='location'
             name="location"
-            placeholder='Enter a City'
+            placeholder="Try 'Austin, TX'"            
             onInput={this.handleLocationInput.bind(this)}
 
-          />
+          /></span>
         </form>
 
         <button type='submit' onClick={this.enterPlanet.bind(null, 'moon')}> See the Moon! ☾ </button>
         <button type='submit' onClick={this.enterPlanet.bind(null, 'mercury')}> See Mercury! ☿ </button>
         <button type='submit' onClick={this.enterPlanet.bind(null, 'venus')}> See Venus! ♀ </button>
         <button type='submit' onClick={this.enterPlanet.bind(null, 'mars')}> See Mars! ♂ </button>
-        <button type='submit' onClick={this.enterPlanet.bind(null, 'jupiter')}> See Jupiter! ♃ </button>
+        <button type='submit' onClick={this.enterPlanet.bind(null, 'jupiter')}> See Jupiter! ♃ </button></center>
 
         {this.state.showWindow ?
           <ModalContainer>
             <ModalDialog id="modal">
-                <button type='submit' onClick={this.enterPlanet.bind(null, 'moon')}> ☾ </button>
+                <center><button type='submit' onClick={this.enterPlanet.bind(null, 'moon')}> ☾ </button>
                 <button type='submit' onClick={this.enterPlanet.bind(null, 'mercury')}> ☿ </button>
                 <button type='submit' onClick={this.enterPlanet.bind(null, 'venus')}> ♀ </button>
                 <button type='submit' onClick={this.enterPlanet.bind(null, 'mars')}> ♂ </button>
-                <button type='submit' onClick={this.enterPlanet.bind(null, 'jupiter')}> ♃ </button>
+                <button type='submit' onClick={this.enterPlanet.bind(null, 'jupiter')}> ♃ </button></center>
               <Photo body={this.state.body.body} moonData={this.state.moonData} date={this.state.date} time={this.state.time} body={this.state.body} location={this.state.location}/>
               <MoonData moonData={this.state.moonData} />
               <button onClick={this.closer.bind(this)}>Seach again</button>
@@ -127,6 +122,9 @@ function getDate(dateStr){
 }
 
 function getTime(dateStr){
+  console.log(dateStr)
+
+
   var arr = dateStr.split('T');
   return arr[1];
 }
